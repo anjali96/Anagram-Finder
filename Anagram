@@ -1,0 +1,78 @@
+package textfiles;
+import java.util.Scanner;
+import java.io.*;
+
+
+
+public class Homework1_Anagrams{
+
+	public static void main(String[] args) throws IOException {
+	
+		
+		//This inputs the string and displays the string back to the user
+		System.out.println("Enter the word of choice");
+		Scanner keyboard = new Scanner(System.in);
+		String inString = keyboard.nextLine();
+		System.out.println("the word entered by you is " + inString);
+		
+		//This converts it to lower case
+		String lowString = inString.toLowerCase();
+		System.out.println("the lower case string is " + lowString);
+		char[] inArray = lowString.toCharArray();
+		
+		//Finds the length of the string
+		int strLength = lowString.length();
+		System.out.println("the length " + strLength);
+		int index=0;
+		
+		
+		//Declares the character array and cleans up the input string
+		char[] cleanArray = new char[strLength];
+		for(int i=0; i < strLength ; i++) {
+		
+			if (Character.isLetter(inArray[i])) {
+				cleanArray[index] = inArray[i];
+				System.out.println(cleanArray[index]);
+				index++;
+			}
+		}
+		System.out.println(cleanArray); //Prints the cleaned character array
+		
+		
+		//Finds the Ascii sum and product of the cleaned up array
+		int sumAscii = 0, prodAscii=1;
+		for (int i =0 ; i<index ; i++) {
+			int asciiVal = (int)cleanArray[i];
+			int reducedVal = asciiVal - 96;
+			sumAscii = sumAscii + reducedVal;
+			prodAscii = prodAscii * reducedVal;
+		}
+		
+		
+		//Reads the lines from the word file till the end of the file and compares it with the given string 
+		
+		while (word.hasNext()){
+			Scanner wordFile = new Scanner(new File("word.txt"));
+			String compString = wordFile.nextLine();
+			
+			compLength = compString.length();
+			
+			if (compLength == index) {
+				char[] compArray = new compString.toCharArray();
+				int compSumAscii = 0, compProdAscii=1;
+				for (int i =0 ; i<index ; i++) {
+					int asciiVal = (int)cleanArray[i];
+					int reducedVal = asciiVal - 96;
+					compSumAscii = compSumAscii + reducedVal;
+					compProdAscii = compProdAscii * reducedVal;
+				}
+				
+				if ((compSumAscii == sumAscii) && (compProdAscii == prodAscii)) {
+					System.out.println(compString);
+				}
+			
+		
+			}
+		}
+	}
+}
